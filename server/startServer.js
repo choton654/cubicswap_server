@@ -2,11 +2,11 @@
 
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
-const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
-const { execute, subscribe } = require("graphql");
+// const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
+// const { execute, subscribe } = require("graphql");
 const dotenv = require("dotenv");
 dotenv.config();
-const PushNotifications = require("@pusher/push-notifications-server");
+// const PushNotifications = require("@pusher/push-notifications-server");
 const compression = require("compression");
 const morgan = require("morgan");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -17,7 +17,7 @@ const { connectDB } = require("./config/db.js");
 const port = process.env.PORT || 3005;
 const schema = require("./schema");
 const { createContext } = require("./context");
-
+var cors = require('cors')
 // const rateLimit = require("express-rate-limit");
 
 // route files
@@ -33,7 +33,7 @@ const getApp = async () => {
 
 
   const app = express();
-
+  app.use(cors())
   const httpServer = createServer(app);
 
   app.use(compression());
@@ -120,7 +120,7 @@ const getApp = async () => {
   apolloServer.applyMiddleware({
     app,
     path: "/api/graphql",
-    cors: process.env.NODE_ENV === "development",
+    cors: true,
   });
 
 
