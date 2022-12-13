@@ -323,7 +323,7 @@ const createUser = asyncHandler(async (req, res) => {
   }
 
   try {
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ phone });
 
     if (userExists) {
       return res.status(400).json({ success: false, msg: "User already exists" });
@@ -332,6 +332,7 @@ const createUser = asyncHandler(async (req, res) => {
     const user = await User.create({
       name,
       email,
+      phone,
       password,
       role: "seller",
       sellerType,
