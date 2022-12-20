@@ -35,6 +35,8 @@ const ProductQuery = {
     },
   },
 
+  getSingleProduct: ProductTC.mongooseResolvers.findById(),
+
   // getProductsByCat: ProductTC.mongooseResolvers.pagination({
   //   // perPage:8,
   //   findManyOpts: {
@@ -49,6 +51,9 @@ const ProductQuery = {
   getProductsByOptions: ProductTC.mongooseResolvers.pagination({
     findManyOpts: {
       lean: true,
+      filter: {
+        operators: true
+      }
       // filter: {
       //   isRequired: true,
       //   requiredFields: ["storeId"],

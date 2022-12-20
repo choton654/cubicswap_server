@@ -101,7 +101,8 @@ const getApp = async () => {
   const apolloServer = new ApolloServer({
     schema,
     context: async ({ req, res }) => createContext(req, res),
-    formatError: e => e.message,
+    formatError: err => ({ message: err.message, status: err.status }),
+    // plugins: [responseCachePlugin()],
     // plugins: [
     //   ApolloServerPluginDrainHttpServer({ httpServer }),
     //   {
