@@ -38,4 +38,11 @@ CategoryTC.addRelation("parentCatId", {
   projection: { parentCatId: true },
 });
 
+CategoryTC.addFields({
+  subCategories: {
+    type: [CategoryTC],
+    resolve: async (source, args, ctx, info) =>
+      await Category.find({ parentCatId: source._id, }).lean(),
+  },
+});
 module.exports = { Category, CategoryTC };
