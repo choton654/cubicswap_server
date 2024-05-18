@@ -71,18 +71,18 @@ const getApp = async () => {
 
   app.disable("x-powered-by");
 
-  app.get("/api/pusher/beams-auth", auth, function (req, res) {
-    // Do your normal auth checks here 🔒
-    const userId = req.user._id.toString(); // get it from your auth system
-    const userIDInQueryParam = req.query["user_id"].toString();
-    if (userId !== userIDInQueryParam) {
-      res.status(401).send("Inconsistent request");
-    } else {
-      const beamsToken = beamsClient.generateToken(userId);
-      console.log("successfully registered");
-      res.send(JSON.stringify(beamsToken));
-    }
-  });
+  // app.get("/api/pusher/beams-auth", auth, function (req, res) {
+  //   // Do your normal auth checks here 🔒
+  //   const userId = req.user._id.toString(); // get it from your auth system
+  //   const userIDInQueryParam = req.query["user_id"].toString();
+  //   if (userId !== userIDInQueryParam) {
+  //     res.status(401).send("Inconsistent request");
+  //   } else {
+  //     const beamsToken = beamsClient.generateToken(userId);
+  //     console.log("successfully registered");
+  //     res.send(JSON.stringify(beamsToken));
+  //   }
+  // });
 
   // mount routes
   app.use("/api/users", user);
