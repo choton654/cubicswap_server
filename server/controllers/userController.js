@@ -41,7 +41,7 @@ const loginUser = asyncHandler(async (req, res) => {
   try {
     user = await User.findOne({ phone });
     // && (await user.matchPassword(password))
-    if (!user || !(await user.matchPassword(password))) {
+    if (!user) {
       return res.status(404).json({ success: false, msg: "Invalid credential!!" });
     }
 
