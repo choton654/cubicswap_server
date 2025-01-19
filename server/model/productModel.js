@@ -40,7 +40,7 @@ const productSchema = mongoose.Schema(
     },
     storeId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: "Store",
     },
     views: {

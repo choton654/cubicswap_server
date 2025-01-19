@@ -22,7 +22,7 @@ const ProductMutation = {
 
   updateOneProduct: ProductTC.mongooseResolvers
     .updateOne({
-      filter: { isRequired: true, requiredFields: ["_id", "storeId"] },
+      filter: { isRequired: true, requiredFields: ["_id"] },
       record: {
         isRequired: true,
         requiredFields: [
@@ -84,7 +84,7 @@ const ProductMutation = {
           "description",
           "inStock",
           "price",
-          "storeId",
+          // "storeId",
           "minOrder",
           "rangePerUnit",
         ],
