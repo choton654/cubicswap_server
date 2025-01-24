@@ -236,21 +236,21 @@ const getCategoryProducts = asyncHandler(async (req, res) => {
       .lean()
       .select({ name: 1, parentCatId: 1 });
 
-    const parent = await Category.findById(
-      category.parentCatId.toString()
-    ).lean();
+    // const parent = await Category.findById(
+    //   category.parentCatId.toString()
+    // ).lean();
 
-    console.log(parent);
+    // console.log(parent);
 
-    let mainParent;
+    // let mainParent;
 
-    if (parent.parentCatId === undefined) {
-      mainParent = parent;
-    } else {
-      mainParent = await Category.findById(
-        parent.parentCatId.toString()
-      ).lean();
-    }
+    // if (parent.parentCatId === undefined) {
+    //   mainParent = parent;
+    // } else {
+    //   mainParent = await Category.findById(
+    //     parent.parentCatId.toString()
+    //   ).lean();
+    // }
 
     // const categories = await Category.find({
     //   parentCatId: category.parentCatId.toString(),
@@ -272,8 +272,8 @@ const getCategoryProducts = asyncHandler(async (req, res) => {
       },
       catId,
       name: category.name,
-      mainParent: mainParent,
-      parent: parent,
+      // mainParent: mainParent,
+      // parent: parent,
       category: category,
     });
 
@@ -347,19 +347,19 @@ const getSingleProduct = asyncHandler(async (req, res) => {
       .lean()
       .select({ name: 1, parentCatId: 1 });
 
-    const parent = await Category.findById(
-      category.parentCatId.toString()
-    ).lean();
+    // const parent = await Category.findById(
+    //   category.parentCatId.toString()
+    // ).lean();
 
-    let mainParent;
+    // let mainParent;
 
-    if (parent.parentCatId === undefined) {
-      mainParent = parent;
-    } else {
-      mainParent = await Category.findById(
-        parent.parentCatId.toString()
-      ).lean();
-    }
+    // if (parent.parentCatId === undefined) {
+    //   mainParent = parent;
+    // } else {
+    //   mainParent = await Category.findById(
+    //     parent.parentCatId.toString()
+    //   ).lean();
+    // }
 
     const store = await Store.findById(product.storeId, {
       storeName: 1,
@@ -371,8 +371,8 @@ const getSingleProduct = asyncHandler(async (req, res) => {
       product: product,
       id: productId,
       store: store,
-      mainParent: mainParent,
-      parent: parent,
+      // mainParent: mainParent,
+      // parent: parent,
       category: category,
     });
   } catch (error) {
